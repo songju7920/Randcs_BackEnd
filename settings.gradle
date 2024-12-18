@@ -1,0 +1,6 @@
+rootProject.name = 'Randcs_BackEnd'
+include 'randcs-core'
+include 'randcs-infrastructure'
+include 'randcs-persistence'
+include 'randcs-presentation'
+
