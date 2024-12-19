@@ -1,5 +1,8 @@
 package org.example.global.configuration;
 
+import lombok.RequiredArgsConstructor;
+import org.example.global.filter.JwtFilter;
+import org.example.global.security.jwt.JwtProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -8,9 +11,12 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+    private final JwtProvider jwtProvider;
 
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
@@ -58,7 +64,7 @@ public class SecurityConfig {
                     header.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin);
                 })
 
-                // todo: jwt filter 완성되면 여기에 넣기
+                .addFilterBefore(new JwtFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
 
                 .build();
     }
