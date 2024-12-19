@@ -1,7 +1,6 @@
 package org.example.global.exception;
 
-import lombok.RequiredArgsConstructor;
-import org.example.common.exception.GlobalErrorCode;
+import org.example.common.error.GlobalErrorCode;
 
 import java.time.LocalDateTime;
 

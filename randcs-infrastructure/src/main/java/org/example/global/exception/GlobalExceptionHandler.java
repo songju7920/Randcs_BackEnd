@@ -1,9 +1,9 @@
 package org.example.global.exception;
 
-import org.example.common.exception.GlobalErrorCode;
+import org.example.common.error.GlobalErrorCode;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.example.common.exception.RandcsException;
+import org.example.common.error.RandcsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
