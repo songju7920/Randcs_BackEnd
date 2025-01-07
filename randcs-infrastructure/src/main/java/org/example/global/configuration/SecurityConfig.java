@@ -1,6 +1,8 @@
 package org.example.global.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.example.global.filter.ExceptionFilter;
 import org.example.global.filter.JwtFilter;
 import org.example.global.security.jwt.JwtProvider;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final JwtProvider jwtProvider;
+    private final ObjectMapper objectMapper;
 
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
@@ -65,6 +68,7 @@ public class SecurityConfig {
                 })
 
                 .addFilterBefore(new JwtFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new ExceptionFilter(objectMapper), JwtFilter.class)
 
                 .build();
     }
