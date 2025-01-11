@@ -6,6 +6,7 @@ import org.example.global.filter.ExceptionFilter;
 import org.example.global.filter.JwtFilter;
 import org.example.global.security.jwt.JwtProvider;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -32,29 +33,32 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests((auth) -> {
-                    auth.requestMatchers("/auth/login").permitAll()
-                        .requestMatchers("/auth/signup").permitAll()
-                        .requestMatchers("/auth/code/email").permitAll()
-                        .requestMatchers("/auth/code/tel").permitAll()
-                        .requestMatchers("/auth/code/verification").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/signup").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/code/email").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/code/tel").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/code/verification").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/auth").authenticated();
 
-                    auth.requestMatchers("/user/:userId").authenticated()
-                        .requestMatchers("/user/profile").authenticated()
-                        .requestMatchers("/user/detail").authenticated()
-                        .requestMatchers("/user/password").authenticated()
-                        .requestMatchers("/user/verification").authenticated();
+                    auth.requestMatchers(HttpMethod.GET, "/user/profile").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/user/profile").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/user/password").authenticated();
 
-                    auth.requestMatchers("/streak").authenticated()
-                        .requestMatchers("/streak/answer").authenticated()
-                        .requestMatchers("/streak/end").authenticated();
+                    auth.requestMatchers(HttpMethod.POST, "/room").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/room/:roomId").authenticated();
 
-                    auth.requestMatchers("/hard").authenticated()
-                        .requestMatchers("/hard/answer").authenticated()
-                        .requestMatchers("/hard/end").authenticated();
+                    auth.requestMatchers(HttpMethod.GET, "/streak/answer/:roomId").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/streak/:roomId").authenticated();
 
-                    auth.requestMatchers("/textbook/new").authenticated()
-                        .requestMatchers("/textbook/problem/:textbookId").authenticated()
-                        .requestMatchers("/textbook").authenticated();
+                    auth.requestMatchers(HttpMethod.GET, "/hard/answer/:roomId").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/hard/:roomId").authenticated();
+
+                    auth.requestMatchers(HttpMethod.POST, "/textbook").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/textbook/:textbookId").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/textbook/:textbookId").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/textbook/problem/:textbookId").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/textbook/list").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/textbook/problem").authenticated();
 
                     auth.anyRequest().denyAll();
                 })
