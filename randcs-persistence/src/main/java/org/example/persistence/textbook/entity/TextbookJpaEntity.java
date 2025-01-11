@@ -20,7 +20,7 @@ public class TextbookJpaEntity {
     private UUID id;
 
     @ManyToOne(targetEntity = UserJpaEntity.class, optional = true)
-    @JoinColumn(name = "userEmail", referencedColumnName = "email", nullable = false)
+    @JoinColumn(name = "email", referencedColumnName = "email", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserJpaEntity user;
 
