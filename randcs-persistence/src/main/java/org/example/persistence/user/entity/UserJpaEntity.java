@@ -8,11 +8,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.math.BigInteger;
 
 @Getter
 @Entity(name = "user")
+@DynamicInsert
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserJpaEntity {
@@ -27,7 +29,7 @@ public class UserJpaEntity {
     private String password;
 
     @ColumnDefault("'BASE_PROFILE_URL'")
-    @Column(nullable = true, columnDefinition = "VARCHAR(200)")
+    @Column(nullable = false, columnDefinition = "VARCHAR(200)")
     private String profile;
 
     @Column(nullable = true, columnDefinition = "VARCHAR(30)")

@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.domain.problem.model.Problem;
 import org.example.persistence.GenericMapper;
 import org.example.persistence.problem.entity.ProblemJpaEntity;
-import org.example.persistence.problem.entity.ProblemType;
+import org.example.domain.problem.model.ProblemType;
 import org.example.persistence.textbook.entity.TextbookJpaEntity;
 import org.example.persistence.textbook.repository.TextbookJpaRepository;
 
@@ -18,6 +18,7 @@ public class ProblemMapper implements GenericMapper<Problem, ProblemJpaEntity> {
     public ProblemJpaEntity toEntity(Problem domain) {
         TextbookJpaEntity textbookEntity = textbookRepository.findById(domain.getTextbookId())
                 .orElseThrow(RuntimeException::new);
+
         return new ProblemJpaEntity(
                 domain.getId(),
                 textbookEntity,

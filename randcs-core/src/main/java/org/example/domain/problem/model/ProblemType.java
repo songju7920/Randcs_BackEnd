@@ -1,4 +1,4 @@
-package org.example.persistence.problem.entity;
+package org.example.domain.problem.model;
 
 public enum ProblemType {
     objective,

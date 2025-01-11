@@ -15,10 +15,11 @@ import java.util.UUID;
 @AllArgsConstructor
 public class TextbookJpaEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false, columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = UserJpaEntity.class, optional = true)
+    @ManyToOne(targetEntity = UserJpaEntity.class, optional = true)
     @JoinColumn(name = "userEmail", referencedColumnName = "email", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserJpaEntity user;
