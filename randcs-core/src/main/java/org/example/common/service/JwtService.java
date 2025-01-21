@@ -1,6 +1,7 @@
-package org.example.common.security;
+package org.example.common.service;
 
-public interface JwtPort {
+public interface JwtService {
+
     String generateAccess(String email);
 
     String generateRefresh(String email);

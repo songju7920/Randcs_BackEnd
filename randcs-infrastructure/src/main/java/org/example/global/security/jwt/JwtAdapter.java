@@ -3,12 +3,14 @@ package org.example.global.security.jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
-import org.example.common.security.JwtPort;
+import org.example.common.spi.JwtPort;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 @RequiredArgsConstructor
-public class JwtService implements JwtPort {
+public class JwtAdapter implements JwtPort {
     private final JwtProperties jwtProperties;
 
     @Override
