@@ -8,6 +8,7 @@ import org.example.domain.auth.usecase.DeleteUserUseCase;
 import org.example.domain.auth.usecase.LoginUseCase;
 import org.example.domain.auth.usecase.SignupUseCase;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -21,13 +22,13 @@ public class AuthWebAdapter {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/signup")
-    public void signup(@RequestBody SignupRequestDto request) {
+    public void signup(@Validated @RequestBody SignupRequestDto request) {
         signupUseCase.execute(request);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/login")
-    public void login(@RequestBody LoginRequestDto request) {
+    public void login(@Validated @RequestBody LoginRequestDto request) {
         loginUseCase.execute(request);
     }
 
