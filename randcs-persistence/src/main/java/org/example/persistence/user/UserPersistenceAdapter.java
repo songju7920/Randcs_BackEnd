@@ -16,7 +16,26 @@ public class UserPersistenceAdapter implements QueryUserPort {
     private final UserMapper userMapper;
 
     @Override
+    public void saveUser(User user) {
+        userJpaRepository.save(
+                userMapper.toEntity(user)
+        );
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        userJpaRepository.delete(
+                userMapper.toEntity(user)
+        );
+    }
+
+    @Override
     public Optional<User> getUserByEmail(String email) {
         return userMapper.toDomain(userJpaRepository.findByEmail(email));
+    }
+
+    @Override
+    public Boolean checkUserExistsByEmail(String email) {
+        return userJpaRepository.existsById(email);
     }
 }
