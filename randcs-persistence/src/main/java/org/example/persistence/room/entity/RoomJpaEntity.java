@@ -25,16 +25,16 @@ public class RoomJpaEntity {
     private UUID roomId;
 
     @OneToOne(targetEntity = UserJpaEntity.class, optional = false)
-    @JoinColumn(name = "email", referencedColumnName = "email" ,nullable = false)
+    @JoinColumn(name = "email", referencedColumnName = "email", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserJpaEntity user;
 
-    @OneToOne(targetEntity = TextbookJpaEntity.class, optional = false)
-    @JoinColumn(name = "textbookId", referencedColumnName = "textbookId" ,nullable = false)
+    @OneToOne(targetEntity = TextbookJpaEntity.class, optional = true)
+    @JoinColumn(name = "textbookId", referencedColumnName = "textbookId", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private TextbookJpaEntity textbook;
 
-    @Enumerated
-    @Column(nullable = false, columnDefinition = "INT")
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private RoomType mode;
 }
