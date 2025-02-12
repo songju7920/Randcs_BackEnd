@@ -1,16 +1,18 @@
 package org.example.domain.auth.usecase;
 
 import lombok.RequiredArgsConstructor;
-import org.example.common.annotation.MutableUseCase;
 import org.example.common.service.SecurityService;
 import org.example.domain.auth.dto.request.SignupRequestDto;
 import org.example.domain.user.model.User;
 import org.example.domain.user.service.CheckUserService;
 import org.example.domain.user.service.CommandUserService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@MutableUseCase
+@Service
+@Transactional
 @RequiredArgsConstructor
 public class SignupUseCase {
     private final CommandUserService commandUserService;

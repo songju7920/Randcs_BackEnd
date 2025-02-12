@@ -1,15 +1,17 @@
 package org.example.domain.user.usecase;
 
 import lombok.RequiredArgsConstructor;
-import org.example.common.annotation.MutableUseCase;
 import org.example.common.service.CurrentUserProvider;
 import org.example.domain.user.dto.request.UpdateUserProfileRequestDto;
 import org.example.domain.user.model.User;
 import org.example.domain.user.service.CommandUserService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@MutableUseCase
+@Service
+@Transactional
 @RequiredArgsConstructor
 public class UpdateUserProfileUseCase {
     private final CommandUserService commandUserService;

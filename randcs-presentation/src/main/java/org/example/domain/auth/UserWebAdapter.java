@@ -1,7 +1,6 @@
 package org.example.domain.auth;
 
 import lombok.RequiredArgsConstructor;
-import org.example.common.annotation.WebAdapter;
 import org.example.domain.user.dto.request.UpdatePasswordRequestDto;
 import org.example.domain.user.dto.request.UpdateUserProfileRequestDto;
 import org.example.domain.user.dto.response.GetUserProfileResponseDto;
@@ -12,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@WebAdapter
+@RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserWebAdapter {
