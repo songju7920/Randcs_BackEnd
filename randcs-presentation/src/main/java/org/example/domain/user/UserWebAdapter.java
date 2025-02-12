@@ -1,4 +1,4 @@
-package org.example.domain.auth;
+package org.example.domain.user;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.user.dto.request.UpdatePasswordRequestDto;
