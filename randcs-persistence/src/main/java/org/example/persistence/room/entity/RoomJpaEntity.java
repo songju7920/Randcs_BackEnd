@@ -34,14 +34,6 @@ public class RoomJpaEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private TextbookJpaEntity textbook;
 
-    @ColumnDefault("0")
-    @Column(nullable = false, columnDefinition = "INT")
-    private int correctCnt;
-
-    @ColumnDefault("0")
-    @Column(nullable = false, columnDefinition = "INT")
-    private int wrongCnt;
-
     @Enumerated
     @Column(nullable = false, columnDefinition = "INT")
     private RoomType mode;

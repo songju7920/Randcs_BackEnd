@@ -18,9 +18,5 @@ public class Room {
 
     private final String email;
 
-    private final int correctCnt;
-
-    private final int wrongCnt;
-
     private final RoomType mode;
 }

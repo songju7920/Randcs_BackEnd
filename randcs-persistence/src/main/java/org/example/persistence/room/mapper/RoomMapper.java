@@ -31,8 +31,6 @@ public class RoomMapper implements GenericMapper<Room, RoomJpaEntity> {
                 domain.getRoomId(),
                 userEntity,
                 textbookEntity,
-                domain.getCorrectCnt(),
-                domain.getWrongCnt(),
                 domain.getMode()
         );
     }
@@ -46,8 +44,6 @@ public class RoomMapper implements GenericMapper<Room, RoomJpaEntity> {
         return Optional.of(Room.builder()
                     .roomId(roomEntity.getRoomId())
                     .email(roomEntity.getUser().getEmail())
-                    .correctCnt(roomEntity.getCorrectCnt())
-                    .wrongCnt(roomEntity.getWrongCnt())
                     .mode(roomEntity.getMode())
                     .build()
         );
