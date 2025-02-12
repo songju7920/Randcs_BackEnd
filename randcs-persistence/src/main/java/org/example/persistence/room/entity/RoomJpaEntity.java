@@ -29,7 +29,7 @@ public class RoomJpaEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserJpaEntity user;
 
-    @OneToOne(targetEntity = UserJpaEntity.class, optional = false)
+    @OneToOne(targetEntity = TextbookJpaEntity.class, optional = false)
     @JoinColumn(name = "textbookId", referencedColumnName = "textbookId" ,nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private TextbookJpaEntity textbook;
