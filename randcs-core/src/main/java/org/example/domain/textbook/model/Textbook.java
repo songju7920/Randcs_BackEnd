@@ -10,7 +10,7 @@ import java.util.UUID;
 @Builder
 @RequiredArgsConstructor
 public class Textbook {
-    private final UUID id;
+    private final UUID textbookId;
 
     private final String userEmail;
 

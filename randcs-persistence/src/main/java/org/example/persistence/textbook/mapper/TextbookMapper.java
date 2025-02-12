@@ -19,7 +19,7 @@ public class TextbookMapper implements GenericMapper<Textbook, TextbookJpaEntity
                 .orElseThrow(RuntimeException::new);
 
         return new TextbookJpaEntity(
-                domain.getId(),
+                domain.getTextbookId(),
                 userEntity,
                 domain.getCoverImage(),
                 domain.getTitle()
@@ -33,7 +33,7 @@ public class TextbookMapper implements GenericMapper<Textbook, TextbookJpaEntity
         TextbookJpaEntity textbookEntity = entity.get();
 
         return Optional.of(Textbook.builder()
-                .id(textbookEntity.getId())
+                .textbookId(textbookEntity.getTextbookId())
                 .userEmail(textbookEntity.getUser().getEmail())
                 .title(textbookEntity.getTitle())
                 .coverImage(textbookEntity.getCoverImage())

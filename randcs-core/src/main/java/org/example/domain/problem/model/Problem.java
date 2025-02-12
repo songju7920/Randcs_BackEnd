@@ -10,7 +10,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 public class Problem {
-    private final UUID id;
+    private final UUID problemId;
 
     private final UUID textbookId;
 

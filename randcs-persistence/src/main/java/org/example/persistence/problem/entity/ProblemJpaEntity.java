@@ -20,10 +20,10 @@ public class ProblemJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false, columnDefinition = "BINARY(16)")
-    private UUID id;
+    private UUID problemId;
 
     @ManyToOne(targetEntity = TextbookJpaEntity.class, optional = true)
-    @JoinColumn(name = "textbookId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "textbookId", referencedColumnName = "textbookId", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private TextbookJpaEntity textbook;
 

@@ -20,7 +20,7 @@ public class ProblemMapper implements GenericMapper<Problem, ProblemJpaEntity> {
                 .orElseThrow(RuntimeException::new);
 
         return new ProblemJpaEntity(
-                domain.getId(),
+                domain.getProblemId(),
                 textbookEntity,
                 domain.getContext(),
                 ProblemType.valueOf(domain.getType()),
@@ -35,8 +35,8 @@ public class ProblemMapper implements GenericMapper<Problem, ProblemJpaEntity> {
         ProblemJpaEntity problemEntity = entity.get();
 
         return Optional.of(Problem.builder()
-                .id(problemEntity.getId())
-                .textbookId(problemEntity.getTextbook().getId())
+                .problemId(problemEntity.getProblemId())
+                .textbookId(problemEntity.getTextbook().getTextbookId())
                 .context(problemEntity.getContext())
                 .type(problemEntity.getType().name())
                 .choice(problemEntity.getChoice())

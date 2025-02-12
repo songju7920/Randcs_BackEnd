@@ -17,7 +17,7 @@ public class TextbookJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false, columnDefinition = "BINARY(16)")
-    private UUID id;
+    private UUID textbookId;
 
     @ManyToOne(targetEntity = UserJpaEntity.class, optional = true)
     @JoinColumn(name = "email", referencedColumnName = "email", nullable = false)
