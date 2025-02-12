@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.common.error.GlobalErrorCode;
 import org.example.common.error.RandcsException;
+import org.example.common.error.exception.errorCode.CommonErrorCode;
 import org.example.global.exception.ExceptionResponse;
-import org.example.global.exception.generalExceptions.errorCode.GeneralErrorCode;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class ExceptionFilter extends OncePerRequestFilter {
             convertErrorCodeToJson(e.errorCode, response);
         } catch (Exception e) {
             log.error(e.getMessage());
-            convertErrorCodeToJson(GeneralErrorCode.INTERNAL_SERVER_ERROR, response);
+            convertErrorCodeToJson(CommonErrorCode.INTERNAL_SERVER_ERROR, response);
         }
     }
 

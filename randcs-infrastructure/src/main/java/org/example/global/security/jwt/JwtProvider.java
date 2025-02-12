@@ -9,8 +9,8 @@ import org.example.common.error.exception.InternalServerErrorException;
 import org.example.global.security.auth.CustomUserDetails;
 import org.example.global.security.auth.CustomUserDetailsService;
 import org.example.global.security.exception.ExpiredTokenException;
+import org.example.global.security.exception.TokenIsNotAccessException;
 import org.example.global.security.exception.TokenNotValidException;
-import org.example.global.security.exception.errorCode.TokenIsNotAccessException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class JwtProvider {
     public Authentication getAuthentication(String token) {
         Claims claims = getClaims(token);
 
-        if (claims.get("type").equals("access")) {
+        if (!claims.get("type").equals("access")) {
             throw TokenIsNotAccessException.EXCEPTION;
         }
 
@@ -42,7 +42,7 @@ public class JwtProvider {
         } catch (ExpiredJwtException e) {
             throw ExpiredTokenException.EXCEPTION;
         } catch (Exception e) {
-            throw InternalServerErrorException.Exception;
+            throw TokenNotValidException.EXCEPTION;
         }
 
     }
@@ -50,10 +50,10 @@ public class JwtProvider {
     public String getTokenFromHeader(HttpServletRequest request) {
         String token = request.getHeader(jwtProperties.header());
 
-        if (!token.isEmpty() && token.startsWith(jwtProperties.prefix()) && token.length() > 7) {
+        if (token != null && !token.isEmpty() && token.startsWith(jwtProperties.prefix()) && token.length() > 7) {
             return token.split(" ")[1];
-        } else {
-            throw TokenNotValidException.EXCEPTION;
         }
+
+        return token;
     }
 }

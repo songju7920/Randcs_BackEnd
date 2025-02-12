@@ -19,8 +19,12 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = jwtProvider.getTokenFromHeader(request);
-        Authentication authentication = jwtProvider.getAuthentication(token);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        if (token != null) {
+            Authentication authentication = jwtProvider.getAuthentication(token);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        }
+
         filterChain.doFilter(request, response);
     }
 }

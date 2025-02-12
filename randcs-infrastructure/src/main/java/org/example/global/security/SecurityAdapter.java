@@ -12,6 +12,6 @@ import org.springframework.stereotype.Component;
 public class SecurityAdapter implements SecurityPort {
     @Override
     public String getCurrentUserEmail() {
-        return ((CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).email();
+        return (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }
