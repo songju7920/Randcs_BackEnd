@@ -28,7 +28,8 @@ public class User {
 
     private final Optional<String> url;
 
-    private final Optional<String> tel;
+    @Builder.Default
+    private final Optional<String> tel = Optional.empty();
 
     @Builder.Default
     private final BigInteger exp = BigInteger.valueOf(0);
