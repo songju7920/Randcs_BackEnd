@@ -10,6 +10,7 @@ import org.example.persistence.user.entity.UserJpaEntity;
 import org.example.persistence.user.repository.UserJpaRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -24,8 +25,9 @@ public class RoomMapper implements GenericMapper<Room, RoomJpaEntity> {
         UserJpaEntity userEntity = userJpaRepository.findById(domain.getEmail())
                 .orElse(null);
 
-        TextbookJpaEntity textbookEntity = textbookJpaRepository.findById(domain.getTextBookId().orElse(new UUID(0, 0)))
-                .orElse(null);
+        TextbookJpaEntity textbookEntity = textbookJpaRepository.findById(Optional.ofNullable(domain.getTextBookId())
+                        .orElse(Optional.of(new UUID(0, 0))).get())
+                        .orElse(null);
 
         return new RoomJpaEntity(
                 domain.getRoomId(),

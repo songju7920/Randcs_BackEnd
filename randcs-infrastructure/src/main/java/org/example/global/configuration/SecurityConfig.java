@@ -47,7 +47,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/user/password").authenticated();
 
                     auth.requestMatchers(HttpMethod.POST, "/room").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/room/:roomId").authenticated();
+                        .requestMatchers(HttpMethod.DELETE, "/room").authenticated();
 
                     auth.requestMatchers(HttpMethod.GET, "/streak/answer/:roomId").authenticated()
                         .requestMatchers(HttpMethod.GET, "/streak/:roomId").authenticated();

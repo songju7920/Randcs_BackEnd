@@ -4,8 +4,11 @@ import org.example.persistence.room.entity.RoomJpaEntity;
 import org.example.persistence.user.entity.UserJpaEntity;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface RoomJpaRepository extends CrudRepository<RoomJpaEntity, UUID> {
     Boolean existsByUser(UserJpaEntity entity);
+
+    Optional<RoomJpaEntity> findByUser(UserJpaEntity user);
 }

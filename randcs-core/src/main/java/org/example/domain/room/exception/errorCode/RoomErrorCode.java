@@ -5,6 +5,7 @@ import org.example.common.error.GlobalErrorCode;
 
 @RequiredArgsConstructor
 public enum RoomErrorCode implements GlobalErrorCode {
+    ROOM_NOT_EXISTS(404, "방을 찾을 수 없습니다"),
     ROOM_ALREADY_EXISTS(409, "이미 해당 계정으로 생성된 방이 존재합니다");
 
     private final int errorCode;

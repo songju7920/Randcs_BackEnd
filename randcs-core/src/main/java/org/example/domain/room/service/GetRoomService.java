@@ -3,9 +3,7 @@ package org.example.domain.room.service;
 import org.example.domain.room.entity.Room;
 import org.example.domain.user.model.User;
 
-public interface CommandRoomService {
+public interface GetRoomService {
 
-    Room saveRoom(Room room);
-
-    void deleteRoom(Room room);
+    Room getRoomByUser(User user);
 }
