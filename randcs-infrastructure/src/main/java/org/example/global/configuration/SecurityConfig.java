@@ -50,7 +50,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/room").authenticated();
 
                     auth.requestMatchers(HttpMethod.GET, "/streak/answer/:roomId").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/streak/:roomId").authenticated();
+                        .requestMatchers(HttpMethod.GET, "/streak/{roomId}").authenticated();
 
                     auth.requestMatchers(HttpMethod.GET, "/hard/answer/:roomId").authenticated()
                         .requestMatchers(HttpMethod.GET, "/hard/:roomId").authenticated();
