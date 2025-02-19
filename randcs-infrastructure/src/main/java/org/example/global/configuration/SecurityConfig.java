@@ -49,11 +49,10 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.POST, "/room").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/room").authenticated();
 
-                    auth.requestMatchers(HttpMethod.GET, "/streak/answer/:roomId").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/streak/{roomId}").authenticated();
+                    auth.requestMatchers(HttpMethod.GET, "/streak/{roomId}").authenticated();
 
-                    auth.requestMatchers(HttpMethod.GET, "/hard/answer/:roomId").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/hard/:roomId").authenticated();
+                    auth.requestMatchers(HttpMethod.POST, "/hard/answer/{roomId}").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/hard/{roomId}").authenticated();
 
                     auth.requestMatchers(HttpMethod.POST, "/textbook").authenticated()
                         .requestMatchers(HttpMethod.PATCH, "/textbook/:textbookId").authenticated()
