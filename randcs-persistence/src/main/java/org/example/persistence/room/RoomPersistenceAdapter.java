@@ -11,6 +11,7 @@ import org.example.persistence.user.mapper.UserMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -49,5 +50,10 @@ public class RoomPersistenceAdapter implements QueryRoomPort {
         return roomMapper.toDomain(
                 roomJpaRepository.findByUser(userEntity)
         );
+    }
+
+    @Override
+    public boolean existsByRoomId(UUID roomId) {
+        return roomJpaRepository.existsById(roomId);
     }
 }

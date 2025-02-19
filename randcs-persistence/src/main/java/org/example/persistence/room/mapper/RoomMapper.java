@@ -25,9 +25,8 @@ public class RoomMapper implements GenericMapper<Room, RoomJpaEntity> {
         UserJpaEntity userEntity = userJpaRepository.findById(domain.getEmail())
                 .orElse(null);
 
-        TextbookJpaEntity textbookEntity = textbookJpaRepository.findById(Optional.ofNullable(domain.getTextBookId())
-                        .orElse(Optional.of(new UUID(0, 0))).get())
-                        .orElse(null);
+        TextbookJpaEntity textbookEntity = textbookJpaRepository.findById(
+                domain.getTextBookId().orElse(new UUID(0, 0))).orElse(null);
 
         return new RoomJpaEntity(
                 domain.getRoomId(),
@@ -47,6 +46,7 @@ public class RoomMapper implements GenericMapper<Room, RoomJpaEntity> {
                     .roomId(roomEntity.getRoomId())
                     .email(roomEntity.getUser().getEmail())
                     .mode(roomEntity.getMode())
+                    .textBookId(Optional.ofNullable(roomEntity.getTextbook()).map(TextbookJpaEntity::getTextbookId))
                     .build()
         );
     }
