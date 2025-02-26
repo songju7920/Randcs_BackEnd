@@ -19,8 +19,7 @@ public class User {
 
     private final String password;
 
-    @Builder.Default
-    private final String profile = "DEFAULT_IMG_URL";
+    private final String profile;
 
     private final Optional<String> job;
 
@@ -28,9 +27,7 @@ public class User {
 
     private final Optional<String> url;
 
-    @Builder.Default
-    private final Optional<String> tel = Optional.empty();
+    private final Optional<String> tel;
 
-    @Builder.Default
-    private final BigInteger exp = BigInteger.valueOf(0);
+    private final BigInteger exp;
 }

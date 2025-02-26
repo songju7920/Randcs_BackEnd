@@ -1,10 +1,12 @@
 package org.example.domain.user;
 
 import lombok.RequiredArgsConstructor;
+import org.example.domain.user.dto.request.UpdateExpRequestDto;
 import org.example.domain.user.dto.request.UpdatePasswordRequestDto;
 import org.example.domain.user.dto.request.UpdateUserProfileRequestDto;
 import org.example.domain.user.dto.response.GetUserProfileResponseDto;
 import org.example.domain.user.usecase.GetUserProfileUseCase;
+import org.example.domain.user.usecase.UpdateExpUseCase;
 import org.example.domain.user.usecase.UpdatePasswordUseCase;
 import org.example.domain.user.usecase.UpdateUserProfileUseCase;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ public class UserWebAdapter {
     private final GetUserProfileUseCase getUserProfileUseCase;
     private final UpdateUserProfileUseCase updateUserProfileUseCase;
     private final UpdatePasswordUseCase updatePasswordUseCase;
+    private final UpdateExpUseCase updateExpUseCase;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/profile")
@@ -35,5 +38,11 @@ public class UserWebAdapter {
     @PatchMapping("/password")
     public void updatePassword(@Validated @RequestBody UpdatePasswordRequestDto request) {
         updatePasswordUseCase.execute(request);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PatchMapping("/exp")
+    public void updateExp(@Validated @RequestBody UpdateExpRequestDto request) {
+        updateExpUseCase.execute(request);
     }
 }

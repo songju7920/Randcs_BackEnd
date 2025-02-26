@@ -44,6 +44,7 @@ public class SecurityConfig {
 
                     auth.requestMatchers(HttpMethod.GET, "/user/profile").authenticated()
                         .requestMatchers(HttpMethod.PATCH, "/user/profile").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/user/exp").authenticated()
                         .requestMatchers(HttpMethod.PATCH, "/user/password").authenticated();
 
                     auth.requestMatchers(HttpMethod.POST, "/room").authenticated()
@@ -60,6 +61,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/textbook/problem/:textbookId").authenticated()
                         .requestMatchers(HttpMethod.GET, "/textbook/list").authenticated()
                         .requestMatchers(HttpMethod.POST, "/textbook/problem").authenticated();
+
+                    auth.requestMatchers(HttpMethod.POST, "/util/file").authenticated();
 
                     auth.anyRequest().denyAll();
                 })
