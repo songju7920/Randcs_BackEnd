@@ -25,9 +25,12 @@ public class TextbookJpaEntity {
     private UserJpaEntity user;
 
     @Column(nullable = false, columnDefinition = "VARCHAR(200)")
-    @ColumnDefault("'BASE_COVER_IMAGE_URL'")
+    @ColumnDefault("'https://randcs-bucket.s3.ap-northeast-2.amazonaws.com/a59c1037-4e36-44db-9c51-23942019ecacdefaultCoverImg.png'")
     private String coverImage;
 
     @Column(nullable = false, columnDefinition = "VARCHAR(50)")
     private String title;
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(50)")
+    private String description;
 }

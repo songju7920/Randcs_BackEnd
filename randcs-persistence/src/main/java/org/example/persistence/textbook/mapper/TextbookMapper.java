@@ -22,7 +22,8 @@ public class TextbookMapper implements GenericMapper<Textbook, TextbookJpaEntity
                 domain.getTextbookId(),
                 userEntity,
                 domain.getCoverImage(),
-                domain.getTitle()
+                domain.getTitle(),
+                domain.getDescription()
         );
     }
 
@@ -37,6 +38,7 @@ public class TextbookMapper implements GenericMapper<Textbook, TextbookJpaEntity
                 .userEmail(textbookEntity.getUser().getEmail())
                 .title(textbookEntity.getTitle())
                 .coverImage(textbookEntity.getCoverImage())
+                .description(textbookEntity.getDescription())
                 .build()
         );
     }

@@ -17,4 +17,6 @@ public class Textbook {
     private final String coverImage;
 
     private final String title;
+
+    private final String description;
 }
